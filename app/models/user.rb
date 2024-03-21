@@ -3,13 +3,13 @@ class User < ApplicationRecord
   has_many :transactions
 
   # method to define what is the limit to transactions in the interval of an hour
-  def too_many_tx_in_row
+  def too_many_tx_in_row(transaction)
     max_consecutive_transactions = 3
-    time_zone = Time.find_zone('UTC')
-    one_hour_ago = time_zone - 1.hour
+    one_hour_ago = transaction.transaction_date - 1.hour
     user_transactions = transactions.where(
-      "transaction_date >= ? AND transaction_date <= ?", one_hour_ago.beginning_of_hour, one_hour_ago.end_of_hour
-    ).order(transaction_date: :desc).limit(max_consecutive_transactions)
+      "transaction_date >= ?", one_hour_ago
+    ).order(transaction_date: :asc).limit(max_consecutive_transactions)
+    p user_transactions.count
     user_transactions.count < max_consecutive_transactions
   end
 
