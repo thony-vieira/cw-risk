@@ -1,7 +1,12 @@
+Update:
+HOTFIX: Added additional information on the transaction denial, specifying the reason why it was not accepted. I understand that this is not a viable practice for a real production environment as it exposes data that could weaken the API, and such practice should only be tolerated for evaluation and debugging purposes.
+
 HOW THIS WORK?
 
 API TESTED WITH LOCALHOST AND POSTMAN WITH POST VERB PASSING THESE PARAMETERS: transaction_id, merchant_id, user_id, card_number, transaction_date, transaction_amount; CREATED USING RAILS 7.1.3.2
-ON TERMINAL: 
+It is important to use the information on the csv as parameters because some methods needs that information to be accurate. User_id 81152 and his transations is a good object to test all restrictions.
+
+ON TERMINAL:
 
 RUN RAILS BUNDLE AND RAILS IMPORT:CSV_DATA 
 
