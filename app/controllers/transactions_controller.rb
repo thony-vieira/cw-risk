@@ -6,7 +6,6 @@ class TransactionsController < ApplicationController
     transaction.user = User.find_or_initialize_by(user_params)
 
     if transaction.anti_fraud_checked?
-
       render json: { transaction_id: transaction.transaction_id, recomendation: 'approve' }
     else
       render json: { transaction_id: transaction.transaction_id, recomendation: 'deny' }
